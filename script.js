@@ -39,9 +39,21 @@ function bresenham(x0, y0, x1, y1, plot) {
         }
     }
 }
-
+/**
+ * Dibuja un píxel en el canvas.
+ * @param {number} x - Coordenada X
+ * @param {number} y - Coordenada Y
+ */
 function dibujarPixel(x, y) {
-   
+    const escala = 20; // tamaño de cada "pixel visible"
+
+    ctx.fillStyle = "black";
+
+    // Convertir coordenadas matemáticas a canvas
+    let canvasX = x * escala;
+    let canvasY = canvas.height - (y * escala); // invertir eje Y
+
+    ctx.fillRect(canvasX, canvasY, escala, escala);
 }
 
 // Función principal que se ejecuta al presionar el botón.
@@ -56,12 +68,11 @@ function dibujar() {
 
     console.log("Valores ingresados:", x0, y0, x1, y1);
 
-    // Función temporal para probar (no dibuja aún)
+    // Función plot que ahora dibuja en el canva
     function plot(x, y) {
-        console.log("Punto:", x, y);
+        dibujarPixel(x, y);
     }
 
     // Llamar al algoritmo
     bresenham(x0, y0, x1, y1, plot);
-    console.log("Botón funcionando");
 }
