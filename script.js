@@ -48,4 +48,12 @@ function dibujar() {
     let y1 = parseInt(document.getElementById("y1").value);
 
     console.log("Valores ingresados:", x0, y0, x1, y1);
+
+    // Función temporal para probar (no dibuja aún)
+    function plot(x, y) {
+        console.log("Punto:", x, y);
+    }
+
+    // Llamar al algoritmo
+    bresenham(x0, y0, x1, y1, plot);
 }
