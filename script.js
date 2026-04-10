@@ -137,7 +137,17 @@ function dibujarEjes() {
 // Función principal que se ejecuta al presionar el botón.
 
 function dibujar() {
+
+    const escala = 20;
     
+    // Encontrar máximos
+    let maxX = Math.max(x0, x1);
+    let maxY = Math.max(y0, y1);
+
+    // Ajustar tamaño del canvas
+    canvas.width = (maxX + 2) * escala;
+    canvas.height = (maxY + 2) * escala;
+
      // Dibujar ejes primero
       dibujarEjes();
       
@@ -157,8 +167,5 @@ function dibujar() {
     let pasos = bresenham(x0, y0, x1, y1, plot);
 
     // Llenar tabla
-    llenarTabla(pasos);
-
-    // Llamar al algoritmo
-    bresenham(x0, y0, x1, y1, plot);
+    llenarTabla(pasos); 
 }
