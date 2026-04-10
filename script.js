@@ -70,6 +70,13 @@ function dibujarPixel(x, y) {
 
     ctx.fillRect(canvasX, canvasY, escala, escala);
 }
+/**
+ * Llena la tabla con los datos del algoritmo.
+ * @param {Array} pasos 
+ */
+function llenarTabla(pasos) {
+    
+    };
 
 // Función principal que se ejecuta al presionar el botón.
 
