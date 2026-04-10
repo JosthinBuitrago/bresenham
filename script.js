@@ -148,6 +148,9 @@ function dibujar() {
     canvas.width = (maxX + 2) * escala;
     canvas.height = (maxY + 2) * escala;
 
+    // Limpiar
+     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
      // Dibujar ejes primero
       dibujarEjes();
       
