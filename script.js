@@ -107,7 +107,12 @@ function dibujar() {
     function plot(x, y) {
         dibujarPixel(x, y);
     }
+     // Guardar pasos
+    let pasos = bresenham(x0, y0, x1, y1, plot);
+
+    // Llenar tabla
+    llenarTabla(pasos);
 
     // Llamar al algoritmo
-    bresenham(x0, y0, x1, y1, plot);
+    //bresenham(x0, y0, x1, y1, plot);
 }}
