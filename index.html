@@ -31,7 +31,7 @@
         <table id="tabla-variables">
             <thead>
                 <tr>
-                    <th>paso</th><th>x0</th><th>y0</th><th>dx</th><th>dy</th><th>sx</th><th>sy</th><th>err</th><th>e2</th>
+                    <th>paso</th><th>x0</th><th>y0</th>
                 </tr>
             </thead>
             <tbody id="cuerpo-tabla">
@@ -97,8 +97,6 @@
                 // generacion de la fila para el registro paso a paso
                 let fila = `<tr>
                     <td>${paso}</td><td>${x0}</td><td>${y0}</td>
-                    <td>${dx}</td><td>${dy}</td><td>${sx}</td>
-                    <td>${sy}</td><td>${err}</td><td>${e2}</td>
                 </tr>`;
                 tbody.innerHTML += fila;
 
