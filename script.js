@@ -104,6 +104,24 @@ function dibujarEjes() {
     ctx.moveTo(0, canvas.height);
     ctx.lineTo(canvas.width, canvas.height);
     ctx.stroke();
+
+    // Dibujar eje Y 
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(0, canvas.height);
+    ctx.stroke();
+
+    // Dibujar marcas y números en X
+    for (let x = 0; x <= canvas.width / escala; x++) {
+        let posX = x * escala;
+
+        ctx.beginPath();
+        ctx.moveTo(posX, canvas.height);
+        ctx.lineTo(posX, canvas.height - 5);
+        ctx.stroke();
+
+        ctx.fillText(x, posX + 2, canvas.height - 8);
+    }
 }
 // Función principal que se ejecuta al presionar el botón.
 
