@@ -3,7 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Algoritmo de Bresenham</title>
+
+ <!--contenedor de estilos -->
+    <style>
+        .contenedor {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        canvas {
+            border: 1px solid black;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
 </head>
+
 <body>
 
     <h1>Dibujo de líneas - Bresenham</h1>
@@ -22,6 +45,8 @@
     <input type="number" id="y1">
 
     <br><br>
+    <!--  CONTENEDOR FLEX -->
+    <div class="contenedor">
 
     <button onclick="dibujar()">Dibujar línea</button>
 
