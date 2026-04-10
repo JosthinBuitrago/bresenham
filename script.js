@@ -40,5 +40,12 @@ function bresenham(x0, y0, x1, y1, plot) {
 // Función principal que se ejecuta al presionar el botón.
 
 function dibujar() {
-    console.log("Botón funcionando");
+    //console.log("Botón funcionando");
+    // Obtener valores de los inputs
+    let x0 = parseInt(document.getElementById("x0").value);
+    let y0 = parseInt(document.getElementById("y0").value);
+    let x1 = parseInt(document.getElementById("x1").value);
+    let y1 = parseInt(document.getElementById("y1").value);
+
+    console.log("Valores ingresados:", x0, y0, x1, y1);
 }
