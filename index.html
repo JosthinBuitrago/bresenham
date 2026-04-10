@@ -1,7 +1,7 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <title>algoritmo de bresenham</title>
     <style>
         body { font-family: sans-serif; display: flex; gap: 30px; padding: 20px; }
@@ -45,24 +45,28 @@
         const offset = 30;
         const gridSize = 20;
 
+        // funcion para dibujar el plano cartesiano y sus numeros
         function dibujarEscalas(ctx, width, height) {
             ctx.clearRect(0, 0, width, height);
             ctx.fillStyle = "black";
             ctx.font = "10px sans-serif";
             ctx.strokeStyle = "#e0e0e0";
 
+            // lineas verticales y escala inferior
             for (let x = 0; x <= (width - offset) / gridSize; x++) {
                 let px = offset + x * gridSize;
                 ctx.beginPath(); ctx.moveTo(px, 0); ctx.lineTo(px, height - offset); ctx.stroke();
                 if (x % 2 === 0) ctx.fillText(x, px - 3, height - offset + 15);
             }
 
+            // lineas horizontales y escala lateral izquierda
             for (let y = 0; y <= (height - offset) / gridSize; y++) {
                 let py = (height - offset) - y * gridSize;
                 ctx.beginPath(); ctx.moveTo(offset, py); ctx.lineTo(width, py); ctx.stroke();
                 if (y % 2 === 0) ctx.fillText(y, 5, py + 4);
             }
 
+            // ejes principales del plano
             ctx.strokeStyle = "black";
             ctx.beginPath();
             ctx.moveTo(offset, 0); ctx.lineTo(offset, height - offset);
@@ -70,6 +74,7 @@
             ctx.stroke();
         }
 
+        // funcion para pintar el pixel en el canvas
         function plot(x, y) {
             let px = offset + x * gridSize;
             let py = (canvas.height - offset) - y * gridSize;
@@ -77,6 +82,7 @@
             ctx.fillRect(px - gridSize/2, py - gridSize/2, gridSize, gridSize);
         }
 
+        // algoritmo de bresenham modificado para registrar en la tabla
         function bresenham(x0, y0, x1, y1, plotFn, tbody) {
             let dx = Math.abs(x1 - x0);
             let dy = Math.abs(y1 - y0);
@@ -88,6 +94,7 @@
             while (true) {
                 let e2 = 2 * err;
                 
+                // generacion de la fila para el registro paso a paso
                 let fila = `<tr>
                     <td>${paso}</td><td>${x0}</td><td>${y0}</td>
                     <td>${dx}</td><td>${dy}</td><td>${sx}</td>
@@ -95,19 +102,21 @@
                 </tr>`;
                 tbody.innerHTML += fila;
 
+                // dibujar y verificar condicion de parada
                 plotFn(x0, y0);
                 if (x0 === x1 && y0 === y1) break;
                 
+                // ajustes de ejes segun el error
                 if (e2 > -dy) { err -= dy; x0 += sx; }
                 if (e2 < dx) { err += dx; y0 += sy; }
                 paso++;
             }
         }
 
-        // inicializacion visual
+        // dibujo inicial para que el usuario vea el plano vacio
         dibujarEscalas(ctx, canvas.width, canvas.height);
 
-        // captura de eventos
+        // logica de interaccion al presionar el boton
         document.getElementById('btn-dibujar').addEventListener('click', function() {
             let x0 = parseInt(document.getElementById('x0').value, 10);
             let y0 = parseInt(document.getElementById('y0').value, 10);
@@ -115,11 +124,11 @@
             let y1 = parseInt(document.getElementById('y1').value, 10);
             let tbody = document.getElementById('cuerpo-tabla');
 
-            // limpiar ejecuciones anteriores
+            // reiniciar tabla y canvas
             tbody.innerHTML = '';
             dibujarEscalas(ctx, canvas.width, canvas.height);
 
-            // ejecutar algoritmo
+            // arrancar el algoritmo
             bresenham(x0, y0, x1, y1, plot, tbody);
         });
     </script>
