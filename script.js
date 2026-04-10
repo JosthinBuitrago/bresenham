@@ -138,6 +138,9 @@ function dibujarEjes() {
 
 function dibujar() {
     
+     // Dibujar ejes primero
+      dibujarEjes();
+      
     // Obtener valores de los inputs
     let x0 = parseInt(document.getElementById("x0").value);
     let y0 = parseInt(document.getElementById("y0").value);
