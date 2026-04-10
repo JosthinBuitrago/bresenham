@@ -1,3 +1,6 @@
+// Obtener canvas y contexto
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
 /**
  * Implementación del algoritmo de líneas de Bresenham.
  * @param {number} x0 - Coordenada X inicial.
@@ -35,6 +38,10 @@ function bresenham(x0, y0, x1, y1, plot) {
             y0 += sy;
         }
     }
+}
+
+function dibujarPixel(x, y) {
+   
 }
 
 // Función principal que se ejecuta al presionar el botón.
