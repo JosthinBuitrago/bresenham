@@ -95,7 +95,15 @@ function llenarTabla(pasos) {
  */
 function dibujarEjes() {
     const escala = 20;
+    ctx.strokeStyle = "gray";
+    ctx.fillStyle = "black";
+    ctx.font = "10px Arial";
 
+    // Dibujar eje X 
+    ctx.beginPath();
+    ctx.moveTo(0, canvas.height);
+    ctx.lineTo(canvas.width, canvas.height);
+    ctx.stroke();
 }
 // Función principal que se ejecuta al presionar el botón.
 
