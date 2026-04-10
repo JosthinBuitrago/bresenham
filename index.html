@@ -77,15 +77,6 @@
             ctx.fillRect(px - gridSize/2, py - gridSize/2, gridSize, gridSize);
         }
 
-        /**
-         * implementacion modificada del algoritmo de bresenham con tabla.
-         * @param {number} x0 - coordenada x inicial.
-         * @param {number} y0 - coordenada y inicial.
-         * @param {number} x1 - coordenada x final.
-         * @param {number} y1 - coordenada y final.
-         * @param {Function} plotFn - funcion para dibujar.
-         * @param {HTMLElement} tbody - cuerpo de la tabla html para inyectar filas.
-         */
         function bresenham(x0, y0, x1, y1, plotFn, tbody) {
             let dx = Math.abs(x1 - x0);
             let dy = Math.abs(y1 - y0);
@@ -97,7 +88,6 @@
             while (true) {
                 let e2 = 2 * err;
                 
-                // agregar registro a la tabla
                 let fila = `<tr>
                     <td>${paso}</td><td>${x0}</td><td>${y0}</td>
                     <td>${dx}</td><td>${dy}</td><td>${sx}</td>
@@ -114,7 +104,24 @@
             }
         }
 
+        // inicializacion visual
         dibujarEscalas(ctx, canvas.width, canvas.height);
+
+        // captura de eventos
+        document.getElementById('btn-dibujar').addEventListener('click', function() {
+            let x0 = parseInt(document.getElementById('x0').value, 10);
+            let y0 = parseInt(document.getElementById('y0').value, 10);
+            let x1 = parseInt(document.getElementById('x1').value, 10);
+            let y1 = parseInt(document.getElementById('y1').value, 10);
+            let tbody = document.getElementById('cuerpo-tabla');
+
+            // limpiar ejecuciones anteriores
+            tbody.innerHTML = '';
+            dibujarEscalas(ctx, canvas.width, canvas.height);
+
+            // ejecutar algoritmo
+            bresenham(x0, y0, x1, y1, plot, tbody);
+        });
     </script>
 </body>
 </html>
