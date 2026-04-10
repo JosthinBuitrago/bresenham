@@ -139,6 +139,11 @@ function dibujarEjes() {
 function dibujar() {
 
     const escala = 20;
+    // Obtener valores de los inputs
+    let x0 = parseInt(document.getElementById("x0").value);
+    let y0 = parseInt(document.getElementById("y0").value);
+    let x1 = parseInt(document.getElementById("x1").value);
+    let y1 = parseInt(document.getElementById("y1").value);
     
     // Encontrar máximos
     let maxX = Math.max(x0, x1);
@@ -153,12 +158,6 @@ function dibujar() {
 
      // Dibujar ejes primero
       dibujarEjes();
-      
-    // Obtener valores de los inputs
-    let x0 = parseInt(document.getElementById("x0").value);
-    let y0 = parseInt(document.getElementById("y0").value);
-    let x1 = parseInt(document.getElementById("x1").value);
-    let y1 = parseInt(document.getElementById("y1").value);
 
     console.log("Valores ingresados:", x0, y0, x1, y1);
 
