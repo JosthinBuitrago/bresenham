@@ -66,7 +66,7 @@ function dibujarPixel(x, y) {
 
     // Convertir coordenadas matemáticas a canvas
     let canvasX = x * escala;
-    let canvasY = canvas.height - (y * escala); // invertir eje Y
+    let canvasY = canvas.height - (y * escala) - escala ; // invertir eje Y
 
     ctx.fillRect(canvasX, canvasY, escala, escala);
 }
