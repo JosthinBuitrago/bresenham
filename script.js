@@ -118,7 +118,6 @@
             let plotDinamico = function(x, y) {
                 plot(x, y, gridSizeDinamico);
             };
-
             // ejecutamos
             bresenham(x0, y0, x1, y1, plotDinamico, tbody);
         });
