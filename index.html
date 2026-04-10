@@ -1,1 +1,42 @@
-<h1>Titulo</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>algoritmo de bresenham</title>
+    <style>
+        body { font-family: sans-serif; display: flex; gap: 30px; padding: 20px; }
+        .panel { display: flex; flex-direction: column; }
+        .controles { margin-bottom: 20px; padding: 15px; background: #f0f0f0; border-radius: 8px; }
+        input { width: 50px; margin-right: 15px; }
+        canvas { border: 1px solid #ccc; background: #fff; }
+        table { border-collapse: collapse; width: 100%; font-size: 14px; }
+        th, td { border: 1px solid #aaa; padding: 6px; text-align: center; }
+        th { background: #eee; }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <div class="controles">
+            <h3>coordenadas</h3>
+            <label>x0: <input type="number" id="x0" value="2"></label>
+            <label>y0: <input type="number" id="y0" value="2"></label><br><br>
+            <label>x1: <input type="number" id="x1" value="15"></label>
+            <label>y1: <input type="number" id="y1" value="10"></label><br><br>
+            <button id="btn-dibujar">dibujar linea</button>
+        </div>
+        <canvas id="lienzo" width="450" height="450"></canvas>
+    </div>
+    <div class="panel" style="flex-grow: 1;">
+        <h3>tabla de variables paso a paso</h3>
+        <table id="tabla-variables">
+            <thead>
+                <tr>
+                    <th>paso</th><th>x0</th><th>y0</th><th>dx</th><th>dy</th><th>sx</th><th>sy</th><th>err</th><th>e2</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpo-tabla">
+                </tbody>
+        </table>
+    </div>
+</body>
+</html>
