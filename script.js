@@ -9,35 +9,50 @@ const ctx = canvas.getContext("2d");
  * @param {number} y1 - Coordenada Y final.
  * @param {Function} plot - Función para dibujar el píxel (x, y).
  */
+
+/**
+ * Implementación del algoritmo de líneas de Bresenham.
+ * Ahora también almacena los pasos para mostrarlos en tabla.
+ */
 function bresenham(x0, y0, x1, y1, plot) {
-    // Cálculo de diferenciales y dirección del paso
     let dx = Math.abs(x1 - x0);
     let dy = Math.abs(y1 - y0);
     let sx = (x0 < x1) ? 1 : -1;
     let sy = (y0 < y1) ? 1 : -1;
     let err = dx - dy;
 
+    let pasos = []; // se guarda los datos
+    let paso = 0;
+
     while (true) {
-        // Dibujar el punto actual
-        plot(x0, y0);
-
-        // Condición de finalización
-        if (x0 === x1 && y0 === y1) break;
-
         let e2 = 2 * err;
 
-        // Ajuste en el eje X
+        // Guardar datos antes de modificar
+        pasos.push({
+            paso: paso,
+            x: x0,
+            y: y0,
+            err: err,
+            e2: e2
+        });
+
+        plot(x0, y0);
+
+        if (x0 === x1 && y0 === y1) break;
+
         if (e2 > -dy) {
             err -= dy;
             x0 += sx;
         }
 
-        // Ajuste en el eje Y
         if (e2 < dx) {
             err += dx;
             y0 += sy;
         }
+
+        paso++;
     }
+    return pasos; 
 }
 /**
  * Dibuja un píxel en el canvas.
