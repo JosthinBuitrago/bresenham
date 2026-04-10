@@ -75,8 +75,21 @@ function dibujarPixel(x, y) {
  * @param {Array} pasos 
  */
 function llenarTabla(pasos) {
-    
-    };
+    let tbody = document.querySelector("#tabla tbody");
+    tbody.innerHTML = ""; // limpiar tabla
+
+    pasos.forEach(p => {
+        let fila = `
+            <tr>
+                <td>${p.paso}</td>
+                <td>${p.x}</td>
+                <td>${p.y}</td>
+                <td>${p.err}</td>
+                <td>${p.e2}</td>
+            </tr>
+        `;
+        tbody.innerHTML += fila;
+    });
 
 // Función principal que se ejecuta al presionar el botón.
 
@@ -97,4 +110,4 @@ function dibujar() {
 
     // Llamar al algoritmo
     bresenham(x0, y0, x1, y1, plot);
-}
+}}
