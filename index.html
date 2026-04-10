@@ -35,8 +35,53 @@
                 </tr>
             </thead>
             <tbody id="cuerpo-tabla">
-                </tbody>
+            </tbody>
         </table>
     </div>
+
+    <script>
+        const canvas = document.getElementById('lienzo');
+        const ctx = canvas.getContext('2d');
+        const offset = 30; // margen para los numeros
+        const gridSize = 20; // tamano de cada cuadro
+
+        /**
+         * dibuja una cuadricula cartesiana con marcas de escala numerica.
+         * los valores se dibujan en el costado izquierdo e inferior.
+         * @param {CanvasRenderingContext2D} ctx - contexto del canvas.
+         * @param {number} width - ancho total del canvas.
+         * @param {number} height - alto total del canvas.
+         */
+        function dibujarEscalas(ctx, width, height) {
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = "black";
+            ctx.font = "10px sans-serif";
+            ctx.strokeStyle = "#e0e0e0";
+
+            // lineas verticales y escala horizontal (inferior)
+            for (let x = 0; x <= (width - offset) / gridSize; x++) {
+                let px = offset + x * gridSize;
+                ctx.beginPath(); ctx.moveTo(px, 0); ctx.lineTo(px, height - offset); ctx.stroke();
+                if (x % 2 === 0) ctx.fillText(x, px - 3, height - offset + 15);
+            }
+
+            // lineas horizontales y escala vertical (izquierda)
+            for (let y = 0; y <= (height - offset) / gridSize; y++) {
+                let py = (height - offset) - y * gridSize;
+                ctx.beginPath(); ctx.moveTo(offset, py); ctx.lineTo(width, py); ctx.stroke();
+                if (y % 2 === 0) ctx.fillText(y, 5, py + 4);
+            }
+
+            // dibujar ejes principales
+            ctx.strokeStyle = "black";
+            ctx.beginPath();
+            ctx.moveTo(offset, 0); ctx.lineTo(offset, height - offset);
+            ctx.moveTo(offset, height - offset); ctx.lineTo(width, height - offset);
+            ctx.stroke();
+        }
+
+        // llamada de prueba para ver la cuadricula
+        dibujarEscalas(ctx, canvas.width, canvas.height);
+    </script>
 </body>
 </html>
