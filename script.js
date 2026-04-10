@@ -89,7 +89,7 @@ function llenarTabla(pasos) {
             </tr>
         `;
         tbody.innerHTML += fila;
-    });
+    });}
 
 // Función principal que se ejecuta al presionar el botón.
 
@@ -114,5 +114,5 @@ function dibujar() {
     llenarTabla(pasos);
 
     // Llamar al algoritmo
-    //bresenham(x0, y0, x1, y1, plot);
-}}
+    bresenham(x0, y0, x1, y1, plot);
+}
