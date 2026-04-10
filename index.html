@@ -70,40 +70,47 @@
             ctx.stroke();
         }
 
-        /**
-         * dibuja un pixel logico en el canvas rellenando un cuadro en la grilla.
-         * @param {number} x - coordenada x logica.
-         * @param {number} y - coordenada y logica.
-         */
         function plot(x, y) {
             let px = offset + x * gridSize;
             let py = (canvas.height - offset) - y * gridSize;
             ctx.fillStyle = "red";
-            // centrar el pixel en la interseccion
             ctx.fillRect(px - gridSize/2, py - gridSize/2, gridSize, gridSize);
         }
 
         /**
-         * implementacion del algoritmo de lineas de bresenham.
+         * implementacion modificada del algoritmo de bresenham con tabla.
          * @param {number} x0 - coordenada x inicial.
          * @param {number} y0 - coordenada y inicial.
          * @param {number} x1 - coordenada x final.
          * @param {number} y1 - coordenada y final.
-         * @param {Function} plotFn - funcion para dibujar el pixel (x, y).
+         * @param {Function} plotFn - funcion para dibujar.
+         * @param {HTMLElement} tbody - cuerpo de la tabla html para inyectar filas.
          */
-        function bresenham(x0, y0, x1, y1, plotFn) {
+        function bresenham(x0, y0, x1, y1, plotFn, tbody) {
             let dx = Math.abs(x1 - x0);
             let dy = Math.abs(y1 - y0);
             let sx = (x0 < x1) ? 1 : -1;
             let sy = (y0 < y1) ? 1 : -1;
             let err = dx - dy;
+            let paso = 0;
 
             while (true) {
+                let e2 = 2 * err;
+                
+                // agregar registro a la tabla
+                let fila = `<tr>
+                    <td>${paso}</td><td>${x0}</td><td>${y0}</td>
+                    <td>${dx}</td><td>${dy}</td><td>${sx}</td>
+                    <td>${sy}</td><td>${err}</td><td>${e2}</td>
+                </tr>`;
+                tbody.innerHTML += fila;
+
                 plotFn(x0, y0);
                 if (x0 === x1 && y0 === y1) break;
-                let e2 = 2 * err;
+                
                 if (e2 > -dy) { err -= dy; x0 += sx; }
                 if (e2 < dx) { err += dx; y0 += sy; }
+                paso++;
             }
         }
 
