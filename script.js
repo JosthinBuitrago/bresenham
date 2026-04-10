@@ -90,7 +90,13 @@ function llenarTabla(pasos) {
         `;
         tbody.innerHTML += fila;
     });}
+/**
+ * Dibuja los ejes cartesianos con escala numérica.
+ */
+function dibujarEjes() {
+    const escala = 20;
 
+}
 // Función principal que se ejecuta al presionar el botón.
 
 function dibujar() {
